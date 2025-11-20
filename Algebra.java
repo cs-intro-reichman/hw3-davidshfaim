@@ -26,89 +26,119 @@ public class Algebra {
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 		// Replace the following statement with your code
-		int i = 0 ;
-		while ( i < x1 ) {
-			x2++;
-			i++;
-			
-		}
-		return x2;
-	}
+    int i = 0;
+
+    if (x1 >= 0) {
+        while (i < x1) {
+            x2++;
+            i++;
+        }
+    } else {
+        while (i > x1) {
+            x2--;
+            i--;
+        }
+    }
+
+    return x2;
+}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
 		// Replace the following statement with your code
-		int i = 0;
-		int result = x1;
-		while (i < x2) {
-		result--;
-		i++;	
-		}
-		return result;
-	}
+		 int result = x1;
+    int i = 0;
+
+    if (x2 >= 0) {
+        
+        while (i < x2) {
+            result--;
+            i++;
+        }
+    } else {
+        
+        while (i > x2) {
+            result++;
+            i--;
+        }
+    }
+
+    return result;
+}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 		// Replace the following statement with your code
-		int i = 0;
-		int result = 0;
-        while (i < x2) {
-		result= plus(result, x1);
-		i++;
-		}
-		return result ;
-	}
+		
+    int result = 0;
+    int i = 0;
 
+    if (x2 >= 0) {
+        while (i < x2) {
+            result = plus(result, x1);
+            i++;
+        }
+    } else {
+        while (i > x2) {
+            result = minus(result, x1);
+            i--;
+        }
+    }
+
+    return result;
+}
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		// Replace the following statement with your code
-		int i = 0;
-		int resulte = 1;
-		while (i < n) {
-			resulte = times(resulte, x);
-			i++ ;
-		}
-		return resulte;
-	}
+		 int result = 1;  
+    int i = 0;
+
+    while (i < n) {
+        result = times(result, x);  
+        i++;
+    }
+
+    return result;
+}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		// Replace the following statement with your code
-		
+   
     int result = 0;
 
     while (x1 >= x2) {
-        x1 = minus(x1, x2); 
+        x1 = minus(x1, x2);
         result = plus(result, 1);
     }
 
     return result;
 }
 		
-		
-	
-
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
 		// Replace the following statement with your code
-         int q = div(x1, x2);     
-    int tmp = times(x2, q);   
-    int r = minus(x1, tmp);    
-    return r;
-}	
+        if (x2 == 0) {
+        return 0;
+    }
+    while (x1 >= x2) {
+        x1 = minus(x1, x2);
+    }
 
-	// Returns the integer part of sqrt(x) 
+    return x1 ;
+}
+   // Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		// Replace the following statement with your code
 		 int low = 0;
     int high = x;
 
     while (low <= high) {
-        // mid = (low + high) / 2
+       
         int sum = plus(low, high);
         int mid = div(sum, 2);
 
-        // square = mid * mid
+       
         int square = times(mid, mid);
 
         if (square == x) {
